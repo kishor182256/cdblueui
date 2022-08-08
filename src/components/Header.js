@@ -1,0 +1,72 @@
+import React from 'react';
+import { Box, Flex, Hide, Icon, Link, Select, Text, useMediaQuery } from '@chakra-ui/react'
+import { Image } from '@chakra-ui/react'
+import { useHistory ,useLocation } from 'react-router-dom'
+import NewStepup from './NewStepup';
+import Flags from 'country-flag-icons/react/3x2'
+import { MdClose } from 'react-icons/md';
+
+const image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9OToTXpv2cSRsI7rQgoB-Fk9r0uYRlHEUDCEKXNFd&s'
+const eng='https://www.istockphoto.com/photos/england-flag';
+var jsonData= [{
+  image:'http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg',name:'ENG'
+},
+{image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-SDrIAhKOhGH_dIDxZjwAiq_kEQLSHEcjEg&usqp=CAU',
+name:'FRC'},
+{image:'https://media.istockphoto.com/vectors/flag-of-united-kingdom-vector-id500425531?k=20&m=500425531&s=612x612&w=0&h=VhGis_9niYQ6anEszEQWVjxmczn5KrZKHe_VKZTX7SM=',name:'UK'}]
+
+const Header = () => {
+  const location = useLocation()
+   const [isLarger] = useMediaQuery('(max-width: 400px)')
+   
+   
+  return (
+  
+     <Box style={{marginTop:'0',
+     display: 'flex',
+     backgroundColor:'#FFFFFF',
+     width:'100%',alignItems:'center',
+     justifyContent:`${isLarger ? 'space-around' : 'space-between'}`,
+     height:'auto',
+     clear:'both',
+    
+      marginLeft:'auto',
+      marginRight:'auto'}}>
+      {!isLarger ?<Box mb='20px' ml='50px'><Image src='./ico_CD_large.svg' alt="sunset"
+        marginBottom='15px' z-index= '-1'  mb='200px'
+         width='124px' height='36px' align='center'
+         display= 'block' objectFit='cover'
+         margin='23px 0 0'/></Box>:<Box mb='20px'><Image src='./c-d-logo-icon.svg' alt="sunset"
+         marginBottom='15px' z-index= '-1' mb='20px'
+          width='36px' height='36px' align='center'
+          display= 'block' objectFit='cover'
+          margin='23px 0 0'/></Box>}
+      {location.pathname === '/signup' ? <NewStepup/> : ''}
+      <Box style={{display: 'flex',alignItems:'center'}}>
+      {location.pathname === '/signup' ?<Box padding='10px'>
+      <MdClose color='#0a0a0a'
+       style={{display: 'flex', fontWeight:'bold',
+       lineHeight:'1.5', fontSize:'24px',  height:'24px', width:'24px',
+      alignItems:'center' ,justifyContent:'center',marginRight:'15px'}}/>
+      </Box>:<Box padding='10px'>
+      <Text color='red'>
+        </Text>
+        <Select 
+                width='' focusBorderColor='none'
+                color='gray' bg='white' 
+                borderColor='gray'
+                border='1px solid gray'
+                _active={{border:'1px solid gray'}}
+               style={{ backgroundColor: 'white',borderRadius: '5px' }}
+                margin='20px'>
+                {jsonData.map((map, i)=><option key={i} value={map.name} 
+                style={{ backgroundColor: 'white',borderRadius: '5px' }}>
+                 <Flags.US />{map.name}</option>)}
+       </Select></Box>}
+      </Box>
+    </Box>
+   
+  )
+}
+
+export default Header
