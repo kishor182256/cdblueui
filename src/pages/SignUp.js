@@ -21,14 +21,21 @@ import {
   FormErrorMessage,
   Divider,
   useMediaQuery,
+  Collapse,
+  Fade,
+  ScaleFade,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { AiFillEye,AiFillEyeInvisible, AiOutlineCheckCircle } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
+import './_fonts.css';
+import { Transition } from 'react-transition-group';
 
-
+const styles = {
+  transition:'transition: all 0.8s ease-in-out 0.1s'
+}
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +49,14 @@ export default function Signup() {
    console.log(password);
    const { isOpen, onToggle } = useDisclosure()
    const [isLarger] = useMediaQuery('(max-width: 400px)')
+   const [collapse, setcollapse] = useState(false);
 
+   const handleToggle = (e) => {
+    setShow(e.target.value);
+     setcollapse(!collapse);
+    onToggle();
+  }
+   
 
   const handleChange = (event) => {
     setPassword(event.target.value);
@@ -62,12 +76,12 @@ export default function Signup() {
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} >
         <Stack  >
           <Heading 
-          fontSize='32px' align='left' 
-           fontFamily='Circular-Medium,Arial,Helvetica,sans-serif'>
+          fontSize='32px' align='left' lineHeight='32px'
+           fontFamily='Circular-Book,Arial,Helvetica,sans-serif'>
           Create your login 
           </Heading>
-          <Text fontSize='inherit' color='#626262'
-          fontWeight='500' lineHeight='1.6'
+          <Text  color='#6f6f6f'
+           lineHeight='1.6'
            fontFamily='Circular-Book,Arial,Helvetica,sans-serif'>
           It only takes a couple of minutes to create an account.
           Get started by entering your email address and a memorable password.
@@ -82,16 +96,17 @@ export default function Signup() {
               <Box>
                 <FormControl id="FirstName and middle name" >
                   <Input type="text" 
-                 
-                  _focus={{backgroundColor:'white',
-                  
-                  transform:'translate(0, 12px) scale(0.75)'}}
+                  fontSize='14px'
+                  fontWeight='500'
+                  fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
+                  _focus={{backgroundColor:'white'}}
                   focusBorderColor='none'
-                  color='#4C4C4C'
+                  color='#0a0a0a'
                   bg='white'
                    placeholder='First and middle name'
                     _placeholder={{
                     color: '#626262',  
+                    fontSize:'14px',
                     fontFamily:'Circular-Book,Arial,Helvetica,sans-serif'
                   }}
                   onChange={(e)=>setFirstName(e.target.value)}
@@ -102,29 +117,37 @@ export default function Signup() {
                 <FormControl id="LastName" >
                   <Input type="text" 
                    mt='10px'
+                   fontWeight='500'
+                   fontSize='12px'
+                   color='#0a0a0a'
+                   fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                    onChange={(event)=>setLastName(event.target.value)}
-                   color='#4C4C4C'
+                   
                    placeholder='LastName'
                    _focus={{backgroundColor:'white'}}
                    focusBorderColor='none'
                     _placeholder={{
                     color: '#626262',
+                    fontSize:'14px',
                     fontFamily:'Circular-Book,Arial,Helvetica,sans-serif'
                   }}/>
                 </FormControl>
               </Box>
               
             
+            <Box mt='80px'>
             <FormControl id="email" >
              
               <Input type="email"
+              fontSize='14px'
+              fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
               _focus={{backgroundColor:'white'}}
               focusBorderColor='none'
                placeholder="Email Address"
-               color="primary"
+               color='#0a0a0a'
               _placeholder={{
                     color: '#626262',
-                    fontSize:'16px',
+                    fontSize:'14px',
                     fontFamily:'Circular-Book,Arial,Helvetica,sans-serif'
                   }} 
                 onChange={(e)=>setEmail(e.target.value)}
@@ -133,36 +156,56 @@ export default function Signup() {
             <FormControl id="password" >
               <InputGroup>
               <Input
+                    mt='8px'
                     value={password}
-                    color='black'
+                    color='#0a0a0a'
                     fontSize='16px'
+                    fontWeight='500'
+                    fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                     type={showPassword ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder="Create Password"
                     onChange={handleChange}
-                    _placeholder={{ color: '#626262',fontSize:'16px',
+                    _placeholder={{ color: '#626262',fontSize:'14px',
                     fontFamily:'Circular-Book,Arial,Helvetica,sans-serif' }}
                     _focus={{backgroundColor:'white'}}
                     focusBorderColor='none'
                     
                   />
-                  <InputRightElement width="4.5rem">
-                    <Button background='transparent' size='md'   onClick={handleShowClick}>
-                      {showPassword ? <AiFillEye color='#626262' fontSize='20px' 
-                       height='75px' width='50px'
-                        cursor='pointer' /> : <AiFillEyeInvisible height='75px' color='#626262' fontSize='20px'  width='50px'
-                        cursor='pointer'/>}
+                
+                <InputRightElement mt='8px'>
+                    <Button background='transparent'
+                       height='50px' width='500px'
+                       backgroundSize='24px'
+                       backgroundPosition='center'
+                       backgroundColor='transparent'
+                       fontSize='16px'
+                       cursor='pointer' 
+                       color='gray'
+                        onClick={handleShowClick}>
+                      {showPassword ? < AiFillEyeInvisible color='#626262' fontSize='20px'/>
+                       : <AiFillEye color='#626262' fontSize='20px'/>
+                       }
                     </Button>
-                </InputRightElement>
+                  </InputRightElement>
               </InputGroup>
-              {!password ?  <FormErrorMessage>Password is required.</FormErrorMessage> : null}
+             
             </FormControl>
-            <Text style={{fontSize:'16px',fontWeight:'500'}}>Your password must contain:</Text>
+            </Box>
+            <Text style={{fontSize:'16px',
+            fontWeight:'500',
+            fontFamily:'Circular-Book,Arial,Helvetica,sans-serif'}}>
+              Your password must contain:
+              </Text>
               <RadioGroup>
               <Stack direction='column'>
-              <Box id='capital' display='flex' align='center'>
-                {password.length>7? <FontAwesomeIcon icon={faCheck} color='green' />:
+              <Box id='capital' display='flex' align='center' justify-content='center'>
+                {password.length>7?
+                 <FontAwesomeIcon icon={faCheck} fontSize='10px' 
+                 color='green' style={{border:'1px solid green',borderRadius:'50%',padding: '5px'}}
+                  borderWidth='1px'
+                  borderRadius='50%' />:
                  <FontAwesomeIcon icon={faCircle}
-                 style={{border:'1px solid gray',borderRadius:'50%',
+                 style={{border:'1px solid gray',borderRadius:'50%', 
                  backgroundColor:'white',
                  padding: '0.2px'}} />}
                  <Text ml='10px' letterSpacing='-0.5px' lineheight='1.5px'
@@ -171,6 +214,7 @@ export default function Signup() {
                   overflow='hidden'
                   cursor='pointer'
                   fontSize='16px'
+                  fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                    fontWeight='500'>at least 8 characters</Text>
               </Box>
 
@@ -178,7 +222,9 @@ export default function Signup() {
               
 
               <Box id='number' display='flex' textAlign='center' justifyItems='center'>
-                 {password.match(/[0-9]/)?<FontAwesomeIcon icon={faCheck}  color='green' />:
+                 {password.match(/[0-9]/)?
+                 <FontAwesomeIcon icon={faCheck} fontSize='10px'
+                 style={{border:'1px solid green',borderRadius:'50%',padding: '5px'}}  color='green' />:
                  <FontAwesomeIcon icon={faCircle}
                  style={{border:'1px solid gray',borderRadius:'50%',backgroundColor:'white',padding: '0.5px'}}
                   />}
@@ -188,11 +234,14 @@ export default function Signup() {
                   overflow='hidden'
                   cursor='pointer'
                   fontSize='16px'
+                  fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                    fontWeight='500'>at least 1 number</Text>
               </Box>
 
               <Box id='lower' display='flex' align='center'>
-                {password.match(/[a-z]/)? <FontAwesomeIcon icon={faCheck} color='green' />:
+                {password.match(/[a-z]/)?
+                 <FontAwesomeIcon icon={faCheck} fontSize='10px'
+                style={{border:'1px solid green',borderRadius:'50%',padding: '5px'}} color='green' />:
                  <FontAwesomeIcon icon={faCircle} border='1px solid gray'
                   style={{border:'1px solid gray',borderRadius:'50%',backgroundColor:'white',padding: '0.5px'}}/>}
                   <Text ml='10px' letterSpacing='-0.5px' lineheight='1.5px' color='#757575'
@@ -201,20 +250,25 @@ export default function Signup() {
                   overflow='hidden'
                   cursor='pointer'
                   fontSize='16px'
+                  fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                    fontWeight='500'>a lower case character</Text>
               </Box>
 
               <Box id='capital' display='flex' align='center'>
-                { password.match(/[A-Z]/)?<FontAwesomeIcon icon={faCheck}  color='green' />:
+                { password.match(/[A-Z]/)?<FontAwesomeIcon icon={faCheck} fontSize='10px' fontWeight='700'
+                style={{border:'1px solid green',borderRadius:'50%',padding: '5px'}}
+                 color='green' />:
                  <FontAwesomeIcon icon={faCircle}
                  style={{border:'1px solid gray',borderRadius:'50%',backgroundColor:'white',padding: '0.5px'}} />}
                   <Text ml='10px' letterSpacing='-0.5px' lineheight='1.5px'
                   position='relative'
                   padding='0'
+                  // margin='0'
                   color='#757575'
                   overflow='hidden'
                   cursor='pointer'
                   fontSize='16px'
+                  fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                    fontWeight='500'>a upper case character</Text>
               </Box>
               
@@ -223,50 +277,75 @@ export default function Signup() {
             </RadioGroup>
             </Stack>
             <Text pt={4} fontSize="17px"
-             color='#393939'
+             color='#393939' letterSpacing='0'
              fontFamily='Circular-Bold'
               fontWeight="600">Were you referred to us?</Text>
-              <Flex direction={{sm:'row'}}>
-            <RadioGroup>
-              <Stack direction='row' style={{display: 'flex',justifyContent: 'space-between'}}>
+              <Flex direction={['row','column','column','column']}>
+            <RadioGroup maxW='260px'>
+              <Stack 
+              direction={['column', 'row','row', 'row']}
+              style={{display: 'flex',
+              justifyContent: 'space-between'}}>
                <Radio
+
                style={{
-               borderRadius: '50%',backgroundColor: 'white',padding: '0.5px',color:'blue'}}
-                border='1px solid gray'
+               borderRadius: '50%',
+               backgroundColor: 'white',
+               padding: '1px',color:'blue'}}
+                border='1px solid gray' fontSize='16px'
                 value="no"
                 checked={show === "no"}
                 onChange={(e) => setShow(e.currentTarget.value)}
                >
-                <Text style={{fontSize:'16px',fontWeight:'400'}} color='#757575'>
+                <Text mr='30px'
+                 style={{fontSize:'.875rem',
+                 fontWeight:'400'}} color='#757575'>
                   No</Text></Radio>
                <Radio
+               
                colorScheme='blue'
                style={{border: '1px solid gray',
                borderRadius: '50%',backgroundColor: 'white',padding: '0.5px',color:'blue'}}
                 value="yes"
                 checked={show === "yes"}
-                onChange={(e) => setShow(e.currentTarget.value)}
-               ><Text style={{fontSize:'16px',fontWeight:'400'}}>Yes</Text></Radio>
+                onChange={handleToggle}
+               ><Text style={{fontSize:'.875rem',fontWeight:'400'}}>Yes</Text></Radio>
                 </Stack>
              </RadioGroup>
              </Flex>
-             {show === "yes" &&<Stack >
-             {/* <SlideFade in={isOpen} offsetY='20px'> */}
-              <Text>Please enter your referral code, or the name of the person who referred you</Text>
+             
+             {show === "yes" &&<Stack  transition='all 0.8s ease-in-out 0.1s'>
+              
+             
+              <Text fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
+               mt='8px'>Please enter your referral code, or the name of the person who referred you</Text>
               <Box>
-                <FormControl id="firstName" isRequired>
-                  <Input type="text"
+              
+                <FormControl id="firstName" isRequired >
+                
+                <Input type="text"
+                  color='#393939' position='inherit' fontSize='16px'
+                  fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                   _focus={{backgroundColor:'white'}}
                   focusBorderColor='none'
                    placeholder='Enter Referal code or name'
                    _placeholder={{
                     color: '#4C4C4C',
+                    fontFamily:'Circular-Book,Arial,Helvetica,sans-serif',
+                    fontSize:'14px',
+                    letterSpacing:'-0.05em',
+                    fontWeight:'200'
                   }}/>
+                  
                 </FormControl>
-              </Box>
-              {/* </SlideFade> */}
+                
+                </Box>
+                
+              
+               
+              
             </Stack>}
-
+            
 
             <Stack spacing={10} pt={2}>
               <Button
@@ -274,6 +353,7 @@ export default function Signup() {
                 width='full'
                 // size="lg"
                 opacity='0.5'
+                borderRadius='30px'
                 minH='50px'
                 color={'white'}
                 fontFamily='Circular-Book,Arial,Helvetica,sans-serif'

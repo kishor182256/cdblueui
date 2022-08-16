@@ -5,19 +5,21 @@ import { useHistory ,useLocation } from 'react-router-dom'
 import NewStepup from './NewStepup';
 import Flags from 'country-flag-icons/react/3x2'
 import { MdClose } from 'react-icons/md';
+import select from "react-select";
 
 const image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9OToTXpv2cSRsI7rQgoB-Fk9r0uYRlHEUDCEKXNFd&s'
 const eng='https://www.istockphoto.com/photos/england-flag';
 var jsonData= [{
-  image:'http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg',name:'ENG'
+  image:<div><img src='http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg'/></div>,name:'ENG'
 },
-{image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-SDrIAhKOhGH_dIDxZjwAiq_kEQLSHEcjEg&usqp=CAU',
+{image:<div>
+  <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-SDrIAhKOhGH_dIDxZjwAiq_kEQLSHEcjEg&usqp=CAU'/></div>,
 name:'FRC'},
-{image:'https://media.istockphoto.com/vectors/flag-of-united-kingdom-vector-id500425531?k=20&m=500425531&s=612x612&w=0&h=VhGis_9niYQ6anEszEQWVjxmczn5KrZKHe_VKZTX7SM=',name:'UK'}]
+{image:<div><img src='https://media.istockphoto.com/vectors/flag-of-united-kingdom-vector-id500425531?k=20&m=500425531&s=612x612&w=0&h=VhGis_9niYQ6anEszEQWVjxmczn5KrZKHe_VKZTX7SM='/></div>,name:'UK'}]
 
 const Header = () => {
   const location = useLocation()
-   const [isLarger] = useMediaQuery('(max-width: 400px)')
+   const [isLarger] = useMediaQuery('(max-width: 350px)')
    
    
   return (
@@ -26,11 +28,11 @@ const Header = () => {
      display: 'flex',
      backgroundColor:'#FFFFFF',
      width:'100%',alignItems:'center',
-     justifyContent:`${isLarger ? 'space-around' : 'space-between'}`,
+     justifyContent:`${isLarger ?   'space-between':'space-between'}`,
      height:'auto',
      clear:'both',
     
-      marginLeft:'auto',
+      marginLeft:`${isLarger? '10px':'auto'}`,
       marginRight:'auto'}}>
       {!isLarger ?<Box mb='20px' ml='50px'><Image src='./ico_CD_large.svg' alt="sunset"
         marginBottom='15px' z-index= '-1'  mb='200px'
@@ -48,20 +50,27 @@ const Header = () => {
        style={{display: 'flex', fontWeight:'bold',
        lineHeight:'1.5', fontSize:'24px',  height:'24px', width:'24px',
       alignItems:'center' ,justifyContent:'center',marginRight:'15px'}}/>
-      </Box>:<Box padding='10px'>
-      <Text color='red'>
-        </Text>
+      </Box>:
+      <Box padding='10px' mb='10px'>
+        
         <Select 
                 width='' focusBorderColor='none'
                 color='gray' bg='white' 
-                borderColor='gray'
+                borderColor='#f4f4f4'
+                iconColor='#0b5fff'
                 border='1px solid gray'
                 _active={{border:'1px solid gray'}}
                style={{ backgroundColor: 'white',borderRadius: '5px' }}
                 margin='20px'>
-                {jsonData.map((map, i)=><option key={i} value={map.name} 
+                {jsonData.map((image, i)=><option key={i} value={image.name} 
                 style={{ backgroundColor: 'white',borderRadius: '5px' }}>
-                 <Flags.US />{map.name}</option>)}
+                 <Box style={{height: '10px',
+                  backgroundColor:'red',
+                  width: '10px',borderRadius: '50%'}}>
+                  <Select icon={<img src={image.image}/>}/>
+                  </Box>
+                  {image.name}
+                  </option>)}
        </Select></Box>}
       </Box>
     </Box>
