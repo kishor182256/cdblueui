@@ -1,26 +1,49 @@
 import React from 'react';
-import { Box, Flex, Hide, Icon, Link, Select, Text, useMediaQuery } from '@chakra-ui/react'
-import { Image } from '@chakra-ui/react'
+import { Box, chakra, Flex, Hide, Icon, Image, Link, Select, Text, useMediaQuery } from '@chakra-ui/react'
 import { useHistory ,useLocation } from 'react-router-dom'
 import NewStepup from './NewStepup';
 import Flags from 'country-flag-icons/react/3x2'
 import { MdClose } from 'react-icons/md';
-import select from "react-select";
+import Flag from 'national-flag-icons';
+import FlagIcon from './FlagIcon';
+import { useState } from 'react';
+import {GiSouthAfricaFlag} from 'react-icons/gi'
+import Selected from './Select';
 
 const image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9OToTXpv2cSRsI7rQgoB-Fk9r0uYRlHEUDCEKXNFd&s'
 const eng='https://www.istockphoto.com/photos/england-flag';
 var jsonData= [{
-  image:<div><img src='http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg'/></div>,name:'ENG'
+  image:
+  'http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg',name:'ENG'
 },
-{image:<div>
-  <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-SDrIAhKOhGH_dIDxZjwAiq_kEQLSHEcjEg&usqp=CAU'/></div>,
+{image:
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-SDrIAhKOhGH_dIDxZjwAiq_kEQLSHEcjEg&usqp=CAU',
 name:'FRC'},
-{image:<div><img src='https://media.istockphoto.com/vectors/flag-of-united-kingdom-vector-id500425531?k=20&m=500425531&s=612x612&w=0&h=VhGis_9niYQ6anEszEQWVjxmczn5KrZKHe_VKZTX7SM='/></div>,name:'UK'}]
+{image:'https://media.istockphoto.com/vectors/flag-of-united-kingdom-vector-id500425531?k=20&m=500425531&s=612x612&w=0&h=VhGis_9niYQ6anEszEQWVjxmczn5KrZKHe_VKZTX7SM=',name:'UK'}]
 
+const images = chakra(Image, {
+  baseStyle: { maxH: 120, maxW: 120 },
+  shouldForwardProp: (prop) =>
+    [
+      "width",
+      "height",
+      "src",
+      "alt",
+      "quality",
+      "placeholder",
+      "blurDataURL",
+      "loader ",
+    ].includes(prop),
+});
 const Header = () => {
   const location = useLocation()
    const [isLarger] = useMediaQuery('(max-width: 350px)')
    
+   const [countries] = useState([
+    { code: 'ax', title: 'Greece'},
+    { code: 'ba', title: 'United Kingdom'},
+    { code: 'ax', title: 'United States'}
+  ]);
    
   return (
   
@@ -34,44 +57,28 @@ const Header = () => {
     
       marginLeft:`${isLarger? '10px':'auto'}`,
       marginRight:'auto'}}>
-      {!isLarger ?<Box mb='20px' ml='50px'><Image src='./ico_CD_large.svg' alt="sunset"
-        marginBottom='15px' z-index= '-1'  mb='200px'
+        
+      {!isLarger ?<Box mb='50px' ml='50px'><Image src='./ico_CD_large.svg' alt="sunset"
+        marginBottom='15px' z-index= '-1'  mb='2000px'
          width='124px' height='36px' align='center'
          display= 'block' objectFit='cover'
          margin='23px 0 0'/></Box>:<Box mb='20px'><Image src='./c-d-logo-icon.svg' alt="sunset"
-         marginBottom='15px' z-index= '-1' mb='20px'
+         marginBottom='20px' z-index= '-1' mb='20px'
           width='36px' height='36px' align='center'
           display= 'block' objectFit='cover'
           margin='23px 0 0'/></Box>}
       {location.pathname === '/signup' ? <NewStepup/> : ''}
       <Box style={{display: 'flex',alignItems:'center'}}>
       {location.pathname === '/signup' ?<Box padding='10px'>
+      <GiSouthAfricaFlag/>
       <MdClose color='#0a0a0a'
        style={{display: 'flex', fontWeight:'bold',
        lineHeight:'1.5', fontSize:'24px',  height:'24px', width:'24px',
       alignItems:'center' ,justifyContent:'center',marginRight:'15px'}}/>
       </Box>:
-      <Box padding='10px' mb='10px'>
-        
-        <Select 
-                width='' focusBorderColor='none'
-                color='gray' bg='white' 
-                borderColor='#f4f4f4'
-                iconColor='#0b5fff'
-                border='1px solid gray'
-                _active={{border:'1px solid gray'}}
-               style={{ backgroundColor: 'white',borderRadius: '5px' }}
-                margin='20px'>
-                {jsonData.map((image, i)=><option key={i} value={image.name} 
-                style={{ backgroundColor: 'white',borderRadius: '5px' }}>
-                 <Box style={{height: '10px',
-                  backgroundColor:'red',
-                  width: '10px',borderRadius: '50%'}}>
-                  <Select icon={<img src={image.image}/>}/>
-                  </Box>
-                  {image.name}
-                  </option>)}
-       </Select></Box>}
+      <Box padding='10px' mb='10px' ml='10px'>
+         <Selected/>
+        </Box>}
       </Box>
     </Box>
    

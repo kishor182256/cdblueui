@@ -3,6 +3,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import ForgotPassword from './pages/ForgotPassword'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 
@@ -13,6 +14,8 @@ const App = () => {
     <Routes>
      <Route exact path="/" element={<Login/>}/>
      <Route exact path="/signup" element={<SignUp/>}/>
+     <Route exact path="/forgotPassword" element={<ForgotPassword/>}/>
+
     </Routes>
     <Footer/>
 </Box>

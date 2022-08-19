@@ -56,7 +56,7 @@ const App = () => {
       >
         
           <Box  justifyContent={['center', 'center', 'center', 'center']}
-        alignItems={['center', 'center', 'center', 'center']}>
+         alignItems={['center', 'center', 'center', 'center']}>
           <Box>
             <Heading 
            fontSize='32px' 
@@ -159,7 +159,7 @@ const App = () => {
       </Stack>
       <Box>
        
-        <Link color="#2199e8" to='/'  
+        <Link color="#2199e8" to='/forgotPassword'  
         style={{color:"#0b5fff", fontFamily:'Circular-Book,Arial,Helvetica,sans-serif',
         cursor: "pointer", fontSize:'16px',
         fontWeight:"500 !important"}}>

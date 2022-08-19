@@ -278,10 +278,10 @@ export default function Signup() {
             </Stack>
             <Text pt={4} fontSize="17px"
              color='#393939' letterSpacing='0'
-             fontFamily='Circular-Bold'
+              fontFamily='Circular-Bold'
               fontWeight="600">Were you referred to us?</Text>
               <Flex direction={['row','column','column','column']}>
-            <RadioGroup maxW='260px'>
+            <RadioGroup maxW='260px' mt='5px'>
               <Stack 
               direction={['column', 'row','row', 'row']}
               style={{display: 'flex',
@@ -351,7 +351,7 @@ export default function Signup() {
               <Button
                variant='primary'
                 width='full'
-                // size="lg"
+                mt='10px'
                 opacity='0.5'
                 borderRadius='30px'
                 minH='50px'
