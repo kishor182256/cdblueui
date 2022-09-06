@@ -50,7 +50,7 @@ const App = () => {
         alignItems={['center', 'center', 'center', 'center']}
         marginTop={{lg:'-100px',sm:'-80px'}}
         backgroundColor={{sm:'"#f4f4f4"'}}
-        minW='468px' width='20px'
+        minW='468px' width='20%'
       >
         
           <Box  justifyContent={['center', 'center', 'center', 'center']}
@@ -58,9 +58,9 @@ const App = () => {
           <Box >
             <Heading 
            fontSize='32px' 
-           display='flex'
-           justifyContent='center'
-           fontFamily='Circular-Medium,Arial,Helvetica,sans-serif'
+           display='flex' fontWeight='500'
+           justifyContent='center' color='#121212'
+           fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
             textAlign='center' lineHeight='38px'>
             Answer your security questions to reset your password</Heading></Box>
            
@@ -72,25 +72,25 @@ const App = () => {
               p="1rem"> 
               <FormControl>
                 <InputGroup>                 
-                  <Input type="email"  color='black'
+                  <Input type="email"  color='#626262'
                      focusBorderColor='none' width='100%'
+                     fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                      _focus={{backgroundColor:'white'}}
                     fontSize='16px' placeholder="What is your favorite children book?"
-                    _placeholder={{ color: '#626262',fontSize:'16px',
+                    _placeholder={{ color: '#626262',fontSize:'14px',
                     fontFamily:'Circular-Book,Arial,Helvetica,sans-serif' }} />
                 </InputGroup>
               </FormControl>
-              <FormControl>
+              <FormControl space={12}>
                 <InputGroup>
                   
                   <Input
-                    color='black'
-                    fontSize='16px'
-                    
-                    placeholder="What is the name of the first app"
+                    color='#626262'
+                    fontSize='16px' fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
+                    placeholder="What is the name of the first app ?"
                     focusBorderColor='none'
                     _focus={{backgroundColor:'white'}}
-                    _placeholder={{ color: '#626262',fontSize:'16px',
+                    _placeholder={{ color: '#626262',fontSize:'14px',
                     fontFamily:'Circular-Book,Arial,Helvetica,sans-serif' }}/>
                    
                     
@@ -101,7 +101,7 @@ const App = () => {
                        backgroundSize='24px'
                        backgroundPosition='center'
                        backgroundColor='transparent'
-                       fontSize='16px'
+                       fontSize='16px'  marginTop='30px !important'
                        cursor='pointer' 
                        color='gray'>
                        
@@ -111,18 +111,25 @@ const App = () => {
                 
                
                 </FormControl>
-              <Button width='full' fontSize='16px' height='50px'
+                </Stack>
+                <Box display='flex' align='center' ml='-15px' mt='25px'
+                 justifyContent={['center', 'center', 'center', 'center']}>
+                <Button width='full' fontSize='16px' height='50px' 
                 ml='30px' fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
                background= 'linear-gradient(95deg,#f03ea6 4.1%,#ff6b00 95%,#f03ea6 200%)'
                variant='primary'>
                 Login & reset password
               </Button>
-            </Stack>
+                </Box>
+                
+              
+            
+           
           </form>
         </Box>
       </Stack>
       
-      <Box display='flex' align='center' justifyContent='center' mt='15px'>
+      <Box display='flex' align='center' justifyContent='center' mt='5px'>
       <Text fontSize='16px' letterSpacing='0.5px'
        fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
        color='#626262'>Or reset your password with your{' '}</Text>
@@ -132,6 +139,7 @@ const App = () => {
           {' '}email address
         </Link>
       </Box>
+      
     </Flex>
     </Box>
     
