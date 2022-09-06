@@ -4,14 +4,12 @@ import {
   withDefaultColorScheme,
   withDefaultVariant,
 } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
 const replaceExsiting = {
   variants: {
     filled: {
       field: {
         borderColor:'#e9e9e9',      
         borderWidth:"1px",
-        
         backgroundColor:"white",
         borderRadius:"4px",
         height:'60px'
@@ -43,8 +41,7 @@ const theme = extendTheme(
             backgroundColor: 'gray',
             fontSize: "20px",
             borderRadius:"20px",
-            bgGradient:'linear(95deg, #f03ea6 ,#ff6b00,#f03ea6 )',
-            
+            bgGradient:'linear(95deg, #f03ea6 ,#ff6b00,#f03ea6 )', 
           }),
 
         },

@@ -69,8 +69,8 @@ const Header = () => {
           margin='23px 0 0'/></Box>}
       {location.pathname === '/signup' ? <NewStepup/> : ''}
       <Box style={{display: 'flex',alignItems:'center'}}>
-      {location.pathname === '/signup' ?<Box padding='10px'>
-      <GiSouthAfricaFlag/>
+      {location.pathname === '/signup' || '/forgotPassword' ?<Box padding='10px'>
+      
       <MdClose color='#0a0a0a'
        style={{display: 'flex', fontWeight:'bold',
        lineHeight:'1.5', fontSize:'24px',  height:'24px', width:'24px',

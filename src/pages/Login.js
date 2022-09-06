@@ -71,7 +71,7 @@ const App = () => {
            mr={isLarger?'-10.5%':'10%'}
             alignItems='center' flexWrap='wrap'
            justifyContent='center'>
-           <Text fontSize='13px' textAlign='center' 
+           <Text fontSize='16px' textAlign='center' 
            letterSpacing='-0.5px'  ml='50px'
            fontFamily='Circular-Book,Arial,Helvetica,sans-serif'
            color='#626262' width='100%'>

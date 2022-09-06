@@ -10,6 +10,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./_fonts.css";
 
 
@@ -21,21 +22,22 @@ export default function Signup() {
   return (
     <Flex
       bg={{ sm: "white", md: "#f4f4f4", lg: "#f4f4f4" }}
-      minH={"100vh"}
+      minH={"100vh"} mt='-30px'
       align={"center"}
       justify={"center"}>
-      <Stack spacing={4}  maxW={"lg"} py={6} px={6}>
+      <Stack spacing={4}  maxW={"lg"} py={12} px={12} mt='-100px' width="100%">
         <Stack  display='flex' justifyContent='center'
            alignItems='center'>
           <Heading
-            fontSize="32px"
+             fontWeight='medium' 
+            fontSize="36px"
             align="left"
-            lineHeight="32px"
-            fontFamily="Circular-Book,Arial,Helvetica,sans-serif">
+            lineHeight="38px"
+            fontFamily= "Helvetica, Roboto, Arial, sans-serif">
                Forgotten password
           </Heading></Stack>
           <Box   display='flex' justifyContent='center' 
-           alignItems='center'>
+           alignItems='center' width="100%">
           <Text  fontSize='15px'
             color="#6f6f6f" 
             lineHeight="1.6"
@@ -54,11 +56,12 @@ export default function Signup() {
           </Text>
            </Box>
         
-        <Box rounded={"lg"}>
+        <Box rounded={"lg"} width="100%" >
           <Stack spacing={8}>
             <Box >
               <FormControl id="email">
                 <Input
+                width='100%'
                   type="email"
                   fontSize="14px"
                   fontFamily="Circular-Book,Arial,Helvetica,sans-serif"
@@ -77,7 +80,7 @@ export default function Signup() {
             </Box>
           </Stack>
 
-          <Stack spacing={10} pt={2}>
+          <Stack spacing={10} pt={2} mt='30px'>
             <Button
               variant="primary"
               width="full"
@@ -85,11 +88,18 @@ export default function Signup() {
               borderRadius="30px"
               minH="50px"
               color={"white"}
-              fontFamily="Circular-Book,Arial,Helvetica,sans-serif"
+              fontFamily="Circular-Book, Arial, Helvetica, sans-serif"
               background="linear-gradient(95deg,#f03ea6 4.1%,#ff6b00 95%,#f03ea6 200%)">
               Send me a link
             </Button>
           </Stack>
+          <Box display='flex' align='center'
+           width='100%' height='100%' mt='50px'
+           justifyContent={['center', 'center', 'center', 'center']}>
+            <Link to='/password-forgotten-security-questions'>
+          <Text fontSize='16px' color='#2199e8'
+           fontFamily='Circular-Book,Arial,Helvetica,sans-serif'>Or verify your identity with your security answers.</Text></Link>
+          </Box>
         </Box>
       </Stack>
     </Flex>
