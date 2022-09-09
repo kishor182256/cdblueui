@@ -78,8 +78,8 @@ const App = () => {
            If you’re accessing our online services for the first time 
            (or have only usedour app in the past)
            please follow this link to{'  '} 
-           <a style={{color:'#0b5fff',
-            textDecorationLine:'underline'}}>activate your account</a>
+           <Link to='/account-activation' style={{color:'#0b5fff',
+            textDecorationLine:'underline'}}>activate your account</Link>
            </Text>
            </Box>
            </Box>
