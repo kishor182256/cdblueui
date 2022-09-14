@@ -1,0 +1,8 @@
+.select{
+    background-color:white;
+    color:'gray';
+}
+
+.select:hover{
+    background-color: antiquewhite;
+}

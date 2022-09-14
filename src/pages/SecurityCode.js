@@ -63,23 +63,34 @@ export default function SecurityCode() {
           alignItems="center"
           width="100%"
         >
-          <Heading>We've sent your security code</Heading>
+          <Heading 
+          fontWeight='400'
+          fontFamily="Circular-Book, Arial, Helvetica, sans-serif" >
+            We've sent your security code by SMS to +44 324234234</Heading>
         </Box>
-        <Box>
-          <Heading>by SMS to +44 324234234</Heading>
-        </Box>
+        
+         
+       
 
         <Box rounded={"lg"} width="100%">
           <Stack spacing={8}>
             <Box>
               <FormControl id="email">
-              <HStack>
-  <PinInput defaultValue='234'>
-    <PinInputField bg='white' />
-    <PinInputField bg='white' />
-    <PinInputField bg='white'/>
-    <PinInputField bg='white' />
-    <PinInputField  bg='white'/>
+              <HStack justifyContent='space-around'
+   display='flex'>
+  <PinInput defaultValue='234' width="100%"
+  justifyContent='space-around' 
+   display='flex'>
+    <PinInputField bg='white' height='60px ' border='1px solid rgb(233, 233, 233) !important '
+     minW='60px !important'/>
+    <PinInputField bg='white' height='60px ' border='1px solid rgb(233, 233, 233) !important'
+     minW='60px !important'  />
+    <PinInputField bg='white' height='60px ' border='1px solid rgb(233, 233, 233) !important'
+     minW='60px !important'/>
+    <PinInputField bg='white' height='60px '  border='1px solid rgb(233, 233, 233) !important'
+    minW='60px !important' />
+    <PinInputField  bg='white' height='60px ' border='1px solid rgb(233, 233, 233) !important'
+     minW='60px !important'/>
   </PinInput>
 </HStack>
               </FormControl>

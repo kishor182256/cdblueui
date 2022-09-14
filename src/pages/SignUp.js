@@ -32,6 +32,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
 import './_fonts.css';
 import { Transition } from 'react-transition-group';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const styles = {
   transition:'transition: all 0.8s ease-in-out 0.1s'
@@ -51,6 +52,8 @@ export default function Signup() {
    const [isLarger] = useMediaQuery('(max-width: 400px)')
    const [collapse, setcollapse] = useState(false);
 
+   const navigate = useNavigate();
+
    const handleToggle = (e) => {
     setShow(e.target.value);
      setcollapse(!collapse);
@@ -61,6 +64,10 @@ export default function Signup() {
   const handleChange = (event) => {
     setPassword(event.target.value);
     console.log(password);
+  }
+
+  const handleClick =() =>{
+      navigate('/set-up-security')
   }
 
   return (
@@ -287,7 +294,6 @@ export default function Signup() {
               style={{display: 'flex',
               justifyContent: 'space-between'}}>
                <Radio
-
                style={{
                borderRadius: '50%',
                backgroundColor: 'white',
@@ -349,6 +355,7 @@ export default function Signup() {
 
             <Stack spacing={10} pt={2}>
               <Button
+               onClick={handleClick}
                variant='primary'
                 width='full'
                 mt='10px'

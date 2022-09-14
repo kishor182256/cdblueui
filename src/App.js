@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import AccountActivation from './pages/AccountActivation'
 import AccountActivationLink from './pages/AccountActivationLink'
+import EnterDetails from './pages/EnterDetails'
 import FailedSignUpInComplete from './pages/FailedIncompleteSignUpComplete'
 import FailedIncompleteSignUpComplete from './pages/FailedIncompleteSignUpComplete'
 import FailedSignUpComplete from './pages/FailedSignUpComplete'
@@ -15,16 +16,19 @@ import MobileAppFlow from './pages/MobileAppFlow'
 import SecurityCode from './pages/SecurityCode'
 import SecurityQuestion from './pages/SecurityQuestion'
 import SecurityQuestions from './pages/SecurityQuestions'
+import SelectAccountType from './pages/SelectAccountType'
+import SetPreferences from './pages/SetPreferences'
 import SetUpSecurity from './pages/SetUpSecurity'
 import SignUp from './pages/SignUp'
 import SignUpComplete from './pages/SignUpComplete'
+import UploadDocuments from './pages/UploadDocuments'
 
 const App = () => {
   return (
     <Box bg={['white','white','black']}>
     <Header/>
     <Routes>
-     <Route exact path="/" element={<Login/>}/>
+     <Route exact path="/" element={<SelectAccountType/>}/>
      <Route exact path="/signup" element={<SignUp/>}/>
      <Route exact path="/forgotPassword" element={<ForgotPassword/>}/>
      <Route exact path="/password-forgotten-security-questions" element={<SecurityQuestions/>}/>
@@ -37,6 +41,12 @@ const App = () => {
      <Route exact path="/failedsignupcomplete" element={<FailedSignUpComplete/>}/>
      <Route exact path="/failedincompletesignupcomplete" element={<FailedSignUpInComplete/>}/>
      <Route exact path="/mobileappFlow" element={<MobileAppFlow/>}/>
+     <Route exact path="/login" element={<Login/>}/>
+     <Route exact path="/enterdetails" element={<EnterDetails/>}/>
+     <Route exact path="/setpreference" element={<SetPreferences/>}/>
+
+     <Route exact path="/identity" element={<UploadDocuments/>}/>
+
 
 
 
